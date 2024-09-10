@@ -1,0 +1,146 @@
+/* Reseta os estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #91b1f7f7;
+    /* Tom de azul claro para o corpo */
+    color: #f4f4f4;
+    /* Cor do texto */
+    padding: 0;
+    margin: 0;
+}
+
+/* Header */
+.header-container {
+    text-align: center;
+    background-color: #4cadfd;
+    /* Tom de azul escuro para o cabeçalho */
+    color: white;
+    padding: 20px;
+}
+
+.header-container h1 {
+    margin-bottom: 10px;
+}
+
+.header-container h2 {
+    margin-top: 10px;
+}
+
+/* Navegação */
+.nav-container {
+    background-color: #f4f4f4;
+    padding: 10px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-list li {
+    display: inline;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.nav-list a:hover {
+    color: #67affc;
+}
+
+/* Seções com Flexbox */
+.section-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: calc(50% - 20px);
+    /* Ajusta a largura para duas colunas com espaçamento */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-size: cover;
+    /* Faz a imagem cobrir toda a área da seção */
+    background-position: center;
+    /* Centraliza a imagem de fundo */
+    color: white;
+    /* Cor do texto branca para contrastar com o fundo */
+    min-height: 200px;
+    /* Define uma altura mínima para a seção */
+}
+
+.section h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.section p {
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0b5cb3;
+}
+
+/* Rodapé */
+.footer-container {
+    margin-top: 40px;
+    padding: 10px;
+    background-color: #1d55a9;
+    /* Tom de azul escuro para o rodapé */
+    color: white;
+    text-align: center;
+}
+
+/* Imagens de fundo para cada seção */
+#educacao {
+    background-image: url('https://todospelaeducacao.org.br/wordpress/wp-content/uploads/2020/10/thumb-irs.jpg');
+}
+
+#entretenimento {
+    background-image: url('https://blog.intelbras.com.br/wp-content/uploads/2020/08/entretenimento-em-casa.jpg');
+}
+
+#esportes {
+    background-image: url('https://blog.bodytech.com.br/wp-content/uploads/2018/10/esportesheader.jpg');
+}
+
+#politica {
+    background-image: url('https://www.cursosabeline.com.br/webroot/cur_cache/curso-com-certificado-de-nocoes-de-politica-e-cidadania-no-brasil-1566934456-870-2fc05001.jpg');
+}
+
+#cultura {
+    background-image: url('https://oei.int/downloads/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdG9zIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d4b1ebae35c7677fc93d664b08cea94fb8698be2/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lLTVRJNE1ENEdPZ1pGVkE9PSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--6c2f9f64b31d381860fd81d443afc10a13c8c139/cultura.jpg');
+}
+
+#lazer {
+    background-image: url('http://blog.magiccity.com.br/wp-content/uploads/2019/03/original-10f622ef971515138703e3d22a9009d6.jpg');
+}
