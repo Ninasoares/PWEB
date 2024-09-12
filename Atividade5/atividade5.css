@@ -1,0 +1,51 @@
+ /* Estilo padrão para o div */
+ .box {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+}
+
+/* Rosa para telas até 420px */
+@media (max-width: 420px) {
+    .box {
+        background-color: rgb(236, 44, 149);
+    }
+    .box h2::before {
+        content: "Rosa";
+    }
+}
+
+/* Amarelo para telas maiores que 420px até 768px */
+@media (min-width: 421px) and (max-width: 768px) {
+    .box {
+        background-color: rgb(204, 255, 0);
+    }
+    .box h2::before {
+        content: "Amarelo";
+    }
+}
+
+/* Verde para telas maiores que 768px até 1920px */
+@media (min-width: 769px) and (max-width: 1920px) {
+    .box {
+        background-color: rgba(0, 255, 30, 0.64);
+    }
+    .box h2::before {
+        content: "Verde";
+    }
+}
+
+/* Roxo para telas maiores que 1920px */
+@media (min-width: 1921px) {
+    .box {
+        background-color: rgb(102, 0, 128);
+    }
+    .box h2::before {
+        content: "Roxo";
+    }
+}
