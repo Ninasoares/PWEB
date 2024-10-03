@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Filme</title>
+    <script>
+        const pessoas = [];
+
+        function adicionarPessoa() {
+            let idade = parseInt(document.getElementById('idade').value);
+            let sexo = document.getElementById('sexo').value;
+            let opiniao = parseInt(document.getElementById('opiniao').value);
+
+            pessoas.push({ idade, sexo, opiniao });
+
+            document.getElementById('idade').value = '';
+            document.getElementById('sexo').value = '';
+            document.getElementById('opiniao').value = '';
+
+            alert('Pessoa adicionada!');
+        }
+
+        function calcularResultados() {
+            let totalIdade = 0;
+            let pessoaMaisNova = Infinity;
+            let pessoaMaisVelha = -Infinity;
+            let pessimos = 0;
+            let otimosEbons = 0;
+            let homens = 0;
+            let mulheres = 0;
+
+            pessoas.forEach(pessoa => {
+                totalIdade += pessoa.idade;
+
+                if (pessoa.idade < pessoaMaisNova) {
+                    pessoaMaisNova = pessoa.idade;
+                }
+
+                if (pessoa.idade > pessoaMaisVelha) {
+                    pessoaMaisVelha = pessoa.idade;
+                }
+
+                if (pessoa.opiniao === 1) {
+                    pessimos++;
+                }
+
+                if (pessoa.opiniao === 3 || pessoa.opiniao === 4) {
+                    otimosEbons++;
+                }
+
+                if (pessoa.sexo === 'M') {
+                    homens++;
+                } else if (pessoa.sexo === 'F') {
+                    mulheres++;
+                }
+            });
+
+            let mediaIdade = totalIdade / pessoas.length;
+            let porcentagemOtimosebons = (otimosebons / pessoas.length) * 100;
+
+            // Exibir os resultados
+            document.getElementById('resultados').innerHTML = `
+                <p>Média de idade: ${mediaIdade.toFixed(2)}</p>
+                <p>Idade da pessoa mais velha: ${pessoaMaisVelha}</p>
+                <p>Idade da pessoa mais nova: ${pessoaMaisNova}</p>
+                <p>Quantidade de pessoas que responderam "péssimo": ${pessimos}</p>
+                <p>Porcentagem de pessoas que responderam "ótimo" ou "bom": ${porcentagemOtimosebons.toFixed(2)}%</p>
+                <p>Homens que responderam: ${homens}</p>
+                <p>Mulheres que responderam: ${mulheres}</p> `;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Pesquisa sobre o filme</h1>
+    <form onsubmit="event.preventDefault(); adicionarPessoa();">
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" required><br>
+
+        <label for="sexo">Sexo (M/F):</label>
+        <input type="text" id="sexo" required pattern="[MF]"><br>
+
+        <label for="opiniao">Opinião (1=Péssimo, 2=Regular, 3=Bom, 4=Ótimo):</label>
+        <input type="number" id="opiniao" required min="1" max="4"><br>
+
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <button onclick="calcularResultados()">Calcular Resultados</button>
+
+    <div id="resultados">
+    </div>
+</body>
+
+</html>
