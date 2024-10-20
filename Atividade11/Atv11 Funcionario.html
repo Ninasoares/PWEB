@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas de Objetos</title>
+    <script>
+
+        const Funcionario1 = {
+            matricula: "12345",
+            nome: "João Soares",
+            funcao: "Desenvolvedor"
+        };
+        console.log("Funcionário 1:", Funcionario1);
+
+        function Funcionario(matricula, nome, funcao) {
+            this.matricula = matricula;
+            this.nome = nome;
+            this.funcao = funcao;
+        }
+
+        const Funcionario2 = new Funcionario("67890", "Angela Soares", "Designer");
+        console.log("Funcionário 2:", Funcionario2);
+
+        class FuncionarioClass {
+            constructor(matricula, nome, funcao) {
+                this.matricula = matricula;
+                this.nome = nome;
+                this.funcao = funcao;
+            }
+        }
+
+        const Funcionario3 = new FuncionarioClass("11223", "Ana Soares", "Gerente de Projetos");
+        console.log("Funcionário 3:", Funcionario3);
+    </script>
+</head>
+
+<body>
+    <h1>Exemplo de Objetos em JavaScript</h1>
+    <p>Abra o console do navegador para ver os resultados.</p>
+</body>
+
+</html>
