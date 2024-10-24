@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Retângulo e Contas Bancárias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px 0;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cálculo da Área do Retângulo</h2>
+        <label for="base">Base:</label>
+        <input type="number" id="base" step="0.1"><br>
+        <label for="altura">Altura:</label>
+        <input type="number" id="altura" step="0.1"><br>
+        <button onclick="calcularArea()">Calcular Área</button>
+        <div class="result" id="resultadoRetangulo"></div>
+    </div>
+
+    <div class="container">
+        <h2>Dados da Conta Corrente</h2>
+        <label for="nomeCorrente">Nome:</label>
+        <input type="text" id="nomeCorrente"><br>
+        <label for="bancoCorrente">Banco:</label>
+        <input type="text" id="bancoCorrente"><br>
+        <label for="numeroContaCorrente">Número da Conta:</label>
+        <input type="text" id="numeroContaCorrente"><br>
+        <label for="saldoCorrente">Saldo:</label>
+        <input type="number" id="saldoCorrente" step="0.1"><br>
+        <label for="saldoEspecial">Saldo Especial:</label>
+        <input type="number" id="saldoEspecial" step="0.1"><br>
+        <button onclick="mostrarContaCorrente()">Mostrar Dados Corrente</button>
+        <div class="result" id="resultadoCorrente"></div>
+    </div>
+
+    <div class="container">
+        <h2>Dados da Conta Poupança</h2>
+        <label for="nomePoupanca">Nome:</label>
+        <input type="text" id="nomePoupanca"><br>
+        <label for="bancoPoupanca">Banco:</label>
+        <input type="text" id="bancoPoupanca"><br>
+        <label for="numeroContaPoupanca">Número da Conta:</label>
+        <input type="text" id="numeroContaPoupanca"><br>
+        <label for="saldoPoupanca">Saldo:</label>
+        <input type="number" id="saldoPoupanca" step="0.1"><br>
+        <label for="juros">Juros (%):</label>
+        <input type="number" id="juros" step="0.1"><br>
+        <label for="dataVencimento">Data de Vencimento:</label>
+        <input type="date" id="dataVencimento"><br>
+        <button onclick="mostrarContaPoupanca()">Mostrar Dados Poupança</button>
+        <div class="result" id="resultadoPoupanca"></div>
+    </div>
+
+    <script>
+        function Retangulo(base, altura) {
+            this.base = base;
+            this.altura = altura;
+            
+            this.calcularArea = function() {
+                return this.base * this.altura;
+            };
+        }
+
+        function calcularArea() {
+            const base = parseFloat(document.getElementById('base').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            
+            if (!isNaN(base) && !isNaN(altura) && base > 0 && altura > 0) {
+                const retangulo = new Retangulo(base, altura);
+                document.getElementById('resultadoRetangulo').innerText = `Área do Retângulo: ${retangulo.calcularArea()}`;
+            } else {
+                document.getElementById('resultadoRetangulo').innerText = 'Por favor, insira valores válidos e positivos para base e altura.';
+            }
+        }
+
+        class Conta {
+            constructor(nomeCorrentista, banco, numeroConta, saldo) {
+                this.nomeCorrentista = nomeCorrentista;
+                this.banco = banco;
+                this.numeroConta = numeroConta;
+                this.saldo = saldo;
+            }
+        }
+
+        class Corrente extends Conta {
+            constructor(nomeCorrentista, banco, numeroConta, saldo, saldoEspecial) {
+                super(nomeCorrentista, banco, numeroConta, saldo);
+                this.saldoEspecial = saldoEspecial;
+            }
+
+            mostrarDados() {
+                return `Corrente:\nNome: 
+                ${this.nomeCorrentista}\nBanco: 
+                ${this.banco}\nNúmero da Conta: 
+                ${this.numeroConta}\nSaldo: 
+                ${this.saldo}\nSaldo Especial: 
+                ${this.saldoEspecial}`;
+            }
+        }
+
+        class Poupanca extends Conta {
+            constructor(nomeCorrentista, banco, numeroConta, saldo, juros, dataVencimento) {
+                super(nomeCorrentista, banco, numeroConta, saldo);
+                this.juros = juros;
+                this.dataVencimento = dataVencimento;
+            }
+
+            mostrarDados() {
+                return `Poupança:\nNome: 
+                ${this.nomeCorrentista}\nBanco: 
+                ${this.banco}\nNúmero da Conta: 
+                ${this.numeroConta}\nSaldo: ${this.saldo}\nJuros: 
+                ${this.juros}%\nData de Vencimento: 
+                ${this.dataVencimento}`;
+            }
+        }
+
+        function mostrarContaCorrente() {
+            const nome = document.getElementById('nomeCorrente').value;
+            const banco = document.getElementById('bancoCorrente').value;
+            const numeroConta = document.getElementById('numeroContaCorrente').value;
+            const saldo = parseFloat(document.getElementById('saldoCorrente').value);
+            const saldoEspecial = parseFloat(document.getElementById('saldoEspecial').value);
+            
+            if (nome && banco && numeroConta && !isNaN(saldo) && !isNaN(saldoEspecial)) {
+                const contaCorrente = new Corrente(nome, banco, numeroConta, saldo, saldoEspecial);
+                document.getElementById('resultadoCorrente').innerText = contaCorrente.mostrarDados();
+            } else {
+                document.getElementById('resultadoCorrente').innerText = 'Por favor, preencha todos os campos corretamente.';
+            }
+        }
+
+        function mostrarContaPoupanca() {
+            const nome = document.getElementById('nomePoupanca').value;
+            const banco = document.getElementById('bancoPoupanca').value;
+            const numeroConta = document.getElementById('numeroContaPoupanca').value;
+            const saldo = parseFloat(document.getElementById('saldoPoupanca').value);
+            const juros = parseFloat(document.getElementById('juros').value);
+            const dataVencimento = document.getElementById('dataVencimento').value;
+            
+            if (nome && banco && numeroConta && !isNaN(saldo) && !isNaN(juros) && dataVencimento) {
+                const contaPoupanca = new Poupanca(nome, banco, numeroConta, saldo, juros, dataVencimento);
+                document.getElementById('resultadoPoupanca').innerText = contaPoupanca.mostrarDados();
+            } else {
+                document.getElementById('resultadoPoupanca').innerText = 'Por favor, preencha todos os campos corretamente.';
+            }
+        }
+    </script>
+</body>
+</html>
