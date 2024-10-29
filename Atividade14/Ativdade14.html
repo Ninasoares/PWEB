@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformação de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: blue;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .radios {
+            margin-top: 20px;
+        }
+
+        .radios input {
+            margin-left: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Transformar Texto</h1>
+    <input type="text" id="texto" placeholder="Digite aqui..."><br>
+
+    <div class="radios">
+        <label>
+            <input type="radio" name="transformacao" value="maiusculo"> Letras Maiúsculas
+        </label>
+        <label>
+            <input type="radio" name="transformacao" value="minusculo"> Letras Minúsculas
+        </label>
+    </div>
+
+    <button onclick="transformarTexto()">Transformar</button>
+
+    <script>
+        function transformarTexto() {
+            const campoTexto = document.getElementById('texto');
+            const texto = campoTexto.value.trim();
+
+            if (texto === "") {
+                alert("Por favor, insira um texto para ser transformado!");
+                return;
+            }
+
+            const radios = document.getElementsByName('transformacao');
+            let opcaoSelecionada = '';
+
+            for (const radio of radios) {
+                if (radio.checked) {
+                    opcaoSelecionada = radio.value;
+                    break;
+                }
+            }
+
+            if (opcaoSelecionada === 'maiusculo') {
+                campoTexto.value = texto.toUpperCase();
+            } else if (opcaoSelecionada === 'minusculo') {
+                campoTexto.value = texto.toLowerCase();
+            } else {
+                alert('Selecione uma opção para transformar o texto!');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
